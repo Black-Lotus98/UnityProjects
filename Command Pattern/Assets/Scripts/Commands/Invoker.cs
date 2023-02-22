@@ -6,6 +6,7 @@ public class Invoker : MonoBehaviour
 {
     private bool isRecording;
     private bool isReplaying;
+    private bool isReversed;
     private List<Command> recordCommands = new List<Command>();
     public void ExecuteCommand(Command aCommand)
     {
@@ -18,6 +19,7 @@ public class Invoker : MonoBehaviour
     }
     public void Record()
     {
+        recordCommands.Clear();
         isRecording = true;
     }
     public void Replay()
@@ -40,6 +42,19 @@ public class Invoker : MonoBehaviour
 
     public void Reverse()
     {
-
+        isReversed = true;
+        if (recordCommands.Count <= 0)
+        {
+            Debug.Log("There is nothing to reverse");
+        }
+        else
+        {
+            foreach (var command in recordCommands)
+            {
+                command.Undo();
+                Debug.Log("Reversing Command: " + command);
+            }
+            isReversed = false;
+        }
     }
 }

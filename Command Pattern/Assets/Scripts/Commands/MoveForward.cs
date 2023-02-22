@@ -15,4 +15,9 @@ public class MoveForward : Command
         this.controller.MoveForward();
     }
 
+    public override void Undo()
+    {
+        this.controller.MoveBackward();
+    }
+
 }

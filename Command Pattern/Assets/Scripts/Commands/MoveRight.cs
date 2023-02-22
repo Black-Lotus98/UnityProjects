@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveRight : Command
 {
     private PlayerController controller;
-    
+
     public MoveRight(PlayerController aController)
     {
         this.controller = aController;
@@ -14,4 +14,10 @@ public class MoveRight : Command
     {
         this.controller.MoveRight();
     }
+
+    public override void Undo()
+    {
+        this.controller.MoveLeft();
+    }
+
 }
